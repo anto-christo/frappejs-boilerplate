@@ -1,0 +1,9 @@
+{
+  "name": "frappejs-boilerplate",
+  "version": "1.0.0",
+  "description": "A minimal boilerplate for quickly building apps with FrappeJS.",
+  "main": "server/index.js",
+  "repository": "https://github.com/anto-christo/frappejs-boilerplate.git",
+  "author": "anto-christo <anto.christo.20@gmail.com>",
+  "license": "MIT"
+}
