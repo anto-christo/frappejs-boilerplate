@@ -5,5 +5,8 @@
   "main": "server/index.js",
   "repository": "https://github.com/anto-christo/frappejs-boilerplate.git",
   "author": "anto-christo <anto.christo.20@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "frappejs": "^0.0.9"
+  }
 }
