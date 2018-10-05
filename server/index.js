@@ -5,6 +5,6 @@ server.start({
     connectionParams: {
       dbPath: 'test.db',
     },
-    staticPath: './dist',
-    models: require('./models')
+    staticPath: './static',
+    models: require('../models')
 });

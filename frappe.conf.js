@@ -1,10 +1,15 @@
-module.exports = {
+ module.exports = {
     staticPath: './static',
     distPath: './dist',
     dev: {
-      outputDir: './dist',
-      assetsPublicPath: '/',
+      srcDir: './src',
+      outputDir: '/dist',
+      assetsPublicPath: '/dist',
       devServerPort: 8000,
+      entryHtml: './src/index.html',
+      entry: {
+        app: './src/index.js'
+      },
       env: {
         PORT: process.env.PORT || 8000
       }
