@@ -1,1 +1,2 @@
-require('./js/insertEmail');
+//require('./js/insertEmail');
+require('bootstrap/dist/css/bootstrap.css');

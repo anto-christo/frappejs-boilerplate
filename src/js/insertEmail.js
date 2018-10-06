@@ -22,7 +22,6 @@ const messageEl = document.getElementById("message");
 const saveBtn = document.getElementById("save");
 
 saveBtn.onclick = function(){
-
     const sender = senderEl.value;
     const receiver = receiverEl.value;
     const subject = subjectEl.value || "No Subject";
