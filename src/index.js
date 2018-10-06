@@ -1,2 +1,2 @@
-require('./js/save');
+require('./js');
 require('bootstrap/dist/css/bootstrap.css');

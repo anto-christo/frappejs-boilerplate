@@ -4,7 +4,7 @@ const models = require('../../models');
 const coreModels = require('frappejs/models');
 const HTTPClient = require('frappejs/backends/http');
 const Observable = require('frappejs/utils/observable');
-const $ = require('jquery');
+window.$ = require('jquery');
 
 const server = 'localhost:8000';
 window.frappe = frappe;
@@ -16,21 +16,15 @@ frappe.fetch = window.fetch.bind();
 frappe.db = new HTTPClient({ server });
 frappe.docs = new Observable();
 
+const db = require('./db');
+
+db.retrieveEvents();
+
 $('#save').on('click', function() {
-    const date = $('#date').val();
-    const time = $('#time').val();
-    const title = $('#title').val();
-    const description = $('#description').val();
+    db.insertEvent();
+});
 
-    const event = frappe.newDoc({
-        doctype: 'Event',
-        date,
-        time,
-        title,
-        description
-    });
-
-    event.insert().then(() => {
-        alert('Event added successfully!');
-    })
+$(document).on('click','.card', function() {
+    $id = this.id;
+    db.showEvent($id);
 });
