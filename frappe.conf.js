@@ -3,8 +3,8 @@
     distPath: './dist',
     dev: {
       srcDir: './src',
-      outputDir: '/dist',
-      assetsPublicPath: '/dist',
+      outputDir: './dist',
+      assetsPublicPath: '/',
       devServerPort: 8000,
       entryHtml: './src/index.html',
       entry: {
