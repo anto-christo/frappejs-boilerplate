@@ -6,6 +6,7 @@ const HTTPClient = require('frappejs/backends/http');
 const Observable = require('frappejs/utils/observable');
 window.$ = require('jquery');
 const db = require('./db');
+const misc = require('./misc');
 
 const server = 'localhost:8000';
 window.frappe = frappe;
@@ -19,36 +20,33 @@ frappe.docs = new Observable();
 
 init();
 
-function init() {
-    db.retrieveEvents();
+async function init() {
     localStorage.event = null;
+    await db.retrieveEvents();
 }
 
-function resetFields() {
-    localStorage.event = null;
-    $('#date').val("");
-    $('#time').val("");
-    $('#title').val("");
-    $('#description').val("");
-}
+$('.add').on('click', function() {
+    misc.resetFields();
+});
 
-$('#save').on('click', function() {
-    if(localStorage.event) {
-        db.updateEvent(localStorage.event);
+$('#save').on('click', async function() {
+    if(localStorage.event != 'null') {
+        await db.updateEvent(localStorage.event);
     } else {
-        db.insertEvent();
+        await db.insertEvent();
+        misc.resetFields();
     }
 });
 
-$(document).on('click','.card', function() {
-    $id = this.id;
-    localStorage.event = $id;
-    db.showEvent($id);
-});
-
-$(document).on('click','.del', function() {
+$(document).on('click','.del', async function() {
     $id = this.id;
     $name = $id.split("-")[1];
-    resetFields();
-    db.deleteEvent($name);
+    await db.deleteEvent($name);
+    misc.resetFields();
+});
+
+$(document).on('click','.card', async function(e) {
+    $id = this.id;
+    localStorage.event = $id;
+    await db.showEvent($id);
 });

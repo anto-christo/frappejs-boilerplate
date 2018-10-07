@@ -1,5 +1,5 @@
 module.exports = {
-    insertEvent: function() {
+    insertEvent: async function() {
         const date = $('#date').val();
         const time = $('#time').val();
         const title = $('#title').val();
@@ -29,26 +29,36 @@ module.exports = {
 
     retrieveEvents: async function() {
         let events = await frappe.db.getAll({ doctype:'Event', fields:["*"] });
-        $('#events').empty();    
-        for(let event of events) {
+        $('#events').empty();
+        if(events.length == 0) {
             $('#events').append(
-                `<div id="${event.name}" class="card" style="width: 100%; margin-top: 3%">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h6 class="card-title">${event.date}</h6>
-                            </div>
-                            <div class="col-lg-6">
-                                <i id="del-${event.name}" class="material-icons float-right del">delete</i>
-                            </div>
-                        </div>
-                        <h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>
-                    </div>
+                `<div class="card" style="width: 100%; margin-top: 3%">
                     <div class="card-body">
-                        <p class="card-text">${event.title}</p>
+                        <center>No events to display.</center>
                     </div>
                 </div>`
             );
+        } else {
+            for(let event of events) {
+                $('#events').append(
+                    `<div id="${event.name}" class="card" style="width: 100%; margin-top: 3%">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h6 class="card-title">${event.date}</h6>
+                                </div>
+                                <div class="col-lg-6">
+                                    <i id="del-${event.name}" class="material-icons float-right del">delete</i>
+                                </div>
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">${event.title}</p>
+                        </div>
+                    </div>`
+                );
+            }
         }
     },
 
