@@ -38,15 +38,15 @@ $('#save').on('click', async function() {
     }
 });
 
-$(document).on('click','.del', async function() {
-    $id = this.id;
-    $name = $id.split("-")[1];
-    await db.deleteEvent($name);
-    misc.resetFields();
-});
-
 $(document).on('click','.card', async function(e) {
-    $id = this.id;
-    localStorage.event = $id;
-    await db.showEvent($id);
+    if(e.target.innerHTML == 'delete') {
+        $id = e.target.id;
+        $name = $id.split("-")[1];
+        await db.deleteEvent($name);
+        misc.resetFields();
+    } else {
+        $id = this.id;
+        localStorage.event = $id;
+        await db.showEvent($id);
+    }
 });

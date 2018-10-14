@@ -10,9 +10,9 @@ module.exports = {
             required: 1
         },
         {
-            fieldname: "time",
-            label: "Time",
-            fieldtype: "Time",
+            fieldname: "venue",
+            label: "Venue",
+            fieldtype: "Data",
             required: 1
         },
         {

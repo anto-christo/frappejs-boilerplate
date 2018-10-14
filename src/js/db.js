@@ -1,13 +1,13 @@
 module.exports = {
     insertEvent: async function() {
         const date = $('#date').val();
-        const time = $('#time').val();
+        const venue = $('#venue').val();
         const title = $('#title').val();
         const description = $('#description').val();
         const event = frappe.newDoc({
             doctype: 'Event',
             date,
-            time,
+            venue,
             title,
             description
         });
@@ -19,7 +19,7 @@ module.exports = {
     updateEvent: async function(name) {
         let event = await frappe.getDoc('Event', name);
         event.date = $('#date').val();
-        event.time = $('#time').val();
+        event.venue = $('#venue').val();
         event.title = $('#title').val();
         event.description = $('#description').val();
         event.update().then(() => {
@@ -28,7 +28,15 @@ module.exports = {
     },
 
     retrieveEvents: async function() {
+        function compare(a,b) {
+            if (a.date < b.date)
+              return -1;
+            if (a.date > b.date)
+              return 1;
+            return 0;
+        }
         let events = await frappe.db.getAll({ doctype:'Event', fields:["*"] });
+        events.sort(compare);
         $('#events').empty();
         if(events.length == 0) {
             $('#events').append(
@@ -51,7 +59,7 @@ module.exports = {
                                     <i id="del-${event.name}" class="material-icons float-right del">delete</i>
                                 </div>
                             </div>
-                            <h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">${event.venue}</h6>
                         </div>
                         <div class="card-body">
                             <p class="card-text">${event.title}</p>
@@ -73,7 +81,7 @@ module.exports = {
         let event = await frappe.getDoc('Event', name);
         console.log(event);
         $('#date').val(event.date);
-        $('#time').val(event.time);
+        $('#venue').val(event.venue);
         $('#title').val(event.title);
         $('#description').val(event.description);
     }
