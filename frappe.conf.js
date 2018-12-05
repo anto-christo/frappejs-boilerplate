@@ -1,4 +1,4 @@
- module.exports = {
+module.exports = {
 	staticPath: './static',
     distPath: './dist',
 	dev: {
@@ -16,7 +16,17 @@
   	},
 	node: {
 		paths: {
-			main: 'server/index.js'
+			main: './server/index.js'
 		}
-	}
+	},
+	electron: {
+	    entry: {
+			app: './src/index.js'
+	    },
+	    paths: {
+		 	mainDev: './src-electron/main.dev.js',
+		  	main: './src-electron/main.js',
+		  	renderer: './src/index.js'
+	    }
+  	}
 }
