@@ -13,20 +13,10 @@
 		env: {
 			PORT: process.env.PORT || 8000
 		}
-  },
+  	},
 	node: {
 		paths: {
 			main: 'server/index.js'
 		}
-	},
-	electron: {
-	    entry: {
-				app: './src/index.js'
-	    },
-	    paths: {
-		 	mainDev: 'src-electron/main.dev.js',
-		  	main: 'src-electron/main.js',
-		  	// renderer: 'src/electron.js'
-	    }
-  }
+	}
 }
