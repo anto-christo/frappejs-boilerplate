@@ -79,7 +79,6 @@ module.exports = {
 
     showEvent: async function(name) {
         let event = await frappe.getDoc('Event', name);
-        console.log(event);
         $('#date').val(event.date);
         $('#venue').val(event.venue);
         $('#title').val(event.title);
