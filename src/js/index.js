@@ -18,7 +18,6 @@ frappe.fetch = window.fetch.bind();
 frappe.docs = new Observable();
 
 async function connectToDatabase() {
-    const SQLite = require('frappejs/backends/sqlite');
     const dbPath = path.resolve(process.cwd(),'test.db');
     frappe.isServer = true;
     frappe.login('Administrator');

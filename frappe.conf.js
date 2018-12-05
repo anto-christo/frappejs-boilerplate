@@ -14,11 +14,6 @@ module.exports = {
 			PORT: process.env.PORT || 8000
 		}
   	},
-	node: {
-		paths: {
-			main: './server/index.js'
-		}
-	},
 	electron: {
 	    entry: {
 			app: './src/index.js'
